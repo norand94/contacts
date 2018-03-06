@@ -1,6 +1,23 @@
-# Welcome to Revel
+### Установка и настройка
 
-A high-productivity web framework for the [Go language](http://www.golang.org/).
+1. В папке с репозиторием запустить
+
+`go get && docker-compose up -d`
+
+2. Подключиться к mongo и создать пользователя admin, с паролем, указанным в конфиге подключения к БД.
+
+3. Запустить `revel run`
+
+### Роуты
+
+Управление контактами.
+                              
+GET     /contact
+GET     /contact/list                              
+GET     /contact/show/:id                      
+POST    /contact/create                         
+PUT     /contact/update                        
+DELETE  /contact/delete/:id                     
 
 
 ### Start the web server:

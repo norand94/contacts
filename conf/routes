@@ -8,6 +8,11 @@ module:testrunner
 
 
 GET     /                                       App.Index
+GET     /contact                                Contact.Index
+GET     /contact/show/:id                       Contact.Show
+POST    /contact/create                         Contact.Create
+PUT     /contact/update                         Contact.Update
+DELETE  /contact/delete/:id                     Contact.Delete
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

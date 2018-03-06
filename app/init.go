@@ -1,6 +1,7 @@
 package app
 
 import (
+	"github.com/norand94/contacts/app/models/mongodb"
 	"github.com/revel/revel"
 )
 
@@ -29,12 +30,23 @@ func init() {
 		revel.ActionInvoker,           // Invoke the action.
 	}
 
+	revel.OnAppStart(initApp)
+
 	// Register startup functions with OnAppStart
 	// revel.DevMode and revel.RunMode only work inside of OnAppStart. See Example Startup Script
 	// ( order dependent )
 	// revel.OnAppStart(ExampleStartupScript)
 	// revel.OnAppStart(InitDB)
 	// revel.OnAppStart(FillCache)
+}
+
+func initApp() {
+	mongodb.MaxPool = revel.Config.IntDefault("mongo.maxPool", 0)
+	mongodb.PATH, _ = revel.Config.String("mongo.path")
+	mongodb.DBNAME, _ = revel.Config.String("mongo.database")
+
+	mongodb.CheckAndInitServiceConnection()
+
 }
 
 // HeaderFilter adds common security headers
